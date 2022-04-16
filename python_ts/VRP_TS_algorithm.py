@@ -86,7 +86,6 @@ def compute_cost_route(route):
     dist = 0
     for i in range(0, route.__len__() - 1):
         dist = dist + costs[route[i]][route[i + 1]]
-        # print('for ', route[i], ' to ', route[i + 1], ' is ', dist)
     return dist
 
 
@@ -151,8 +150,6 @@ def optimum_local_search(tot_cost, deliveries):
                                                                                 copy.deepcopy(routes[1]), i, j)
         new_deliveries = try_to_swap_deliveries(n1, n2, copy.deepcopy(deliveries))
 
-        # common_nodes = intersection(routes[0], routes[1])
-
         print('try to swap ', n1, ' and ', n2, ' with new cost ', new_cost_swapping)
         print('new routes: ', new_route_1, new_route_2)
         print('new deliv ', new_deliveries)
@@ -165,17 +162,12 @@ def optimum_local_search(tot_cost, deliveries):
 
             print('upd new sol!')
 
-            # we record the tabu move
-            # tabus.append(((n1, 1), (n2, 2)))  # node 1 is moved to 2nd route, so we make tabu the reverse movement
-
             routes[0] = new_route_1
             routes[1] = new_route_2
 
             best_cost = new_cost_swapping
             deliveries = copy.deepcopy(new_deliveries)
 
-            # i = i + 1
-            # j = j + 1
             break
         else:
             j = j + 1
@@ -209,8 +201,6 @@ def exit_from_local_optimum(cost, deliveries):
                                                                                 copy.deepcopy(routes[1]), i, j)
         new_deliveries = try_to_swap_deliveries(n1, n2, copy.deepcopy(deliveries))
 
-        # common_nodes = intersection(routes[0], routes[1])
-
         print('try to swap leaving local optimum', n1, ' and ', n2, ' with new cost ', new_cost_swapping)
         print('new routes: ', new_route_1, new_route_2)
         print('new deliv ', new_deliveries)
@@ -235,8 +225,6 @@ def exit_from_local_optimum(cost, deliveries):
             cost_ex = new_cost_swapping
             deliveries_ex = copy.deepcopy(new_deliveries)
 
-            # i = i + 1
-            # j = j + 1
             break
         else:
             j = j + 1
